@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from "commander";
 import { syncToFigma } from "../json_to_figma/sync_tokens_to_figma.js";
 
@@ -6,11 +7,12 @@ const program = new Command();
 program
   .name("sync-to-figma")
   .description("デザイントークンをFigmaに同期します")
-  .option("-s, --silent", "詳細なログ出力を抑制します")
+  .option("-d, --dir <directory>", "トークンディレクトリを指定", "tokens")
+  .option("--silent", "詳細なログ出力を抑制します")
   .action(async (options) => {
     try {
       await syncToFigma({
-        silent: options.silent,
+        dir: options.dir,
       });
     } catch (error) {
       console.error("❌ エラーが発生しました:", error);

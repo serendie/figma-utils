@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from "commander";
 
 import { syncFromFigma } from "../figma_to_json/index.js";

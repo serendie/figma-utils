@@ -5,7 +5,11 @@ import FigmaApi from "./figma_api.js";
 import { generatePostVariablesPayload, readJsonFiles } from "./token_import.js";
 import { green, tokenFiles } from "./utils.js";
 
-const main = async () => {
+export interface SyncOptions {
+  dir?: string;
+}
+
+export const syncToFigma = async (options: SyncOptions = {}) => {
   if (!process.env.PERSONAL_ACCESS_TOKEN || !process.env.FILE_KEY) {
     throw new Error(
       "PERSONAL_ACCESS_TOKEN and FILE_KEY environemnt variables are required"
@@ -13,7 +17,7 @@ const main = async () => {
   }
   const fileKey = process.env.FILE_KEY;
 
-  const TOKENS_DIR = "tokens";
+  const TOKENS_DIR = options.dir || "tokens";
   const tokensFiles = tokenFiles(TOKENS_DIR);
 
   const tokensByFile = readJsonFiles(tokensFiles);
@@ -64,4 +68,10 @@ const main = async () => {
   console.log(green("✅ Figma file has been updated with the new tokens"));
 };
 
-main();
+// package.jsonでtsxから実行された場合のエントリーポイント
+if (import.meta.url === `file://${process.argv[1]}`) {
+  syncToFigma().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
