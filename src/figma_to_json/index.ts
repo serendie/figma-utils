@@ -15,13 +15,13 @@ export interface SyncOptions {
 }
 
 export const syncFromFigma = async (options: SyncOptions = {}) => {
-  const OUTPUT_DIR = options.outputDir || "tokens";
-
   if (!process.env.PERSONAL_ACCESS_TOKEN || !process.env.FILE_KEY) {
     throw new Error(
       "PERSONAL_ACCESS_TOKEN and FILE_KEY environment variables are required."
     );
   }
+
+  const OUTPUT_DIR = options.outputDir || "tokens";
 
   const client = new FigmaClient(
     process.env.PERSONAL_ACCESS_TOKEN as string,
