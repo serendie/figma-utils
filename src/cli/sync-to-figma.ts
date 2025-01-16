@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from "commander";
 import { syncToFigma } from "../json_to_figma/sync_tokens_to_figma.js";
 

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "npm run build:cli",
-    "build:cli": "tsup src/cli/*.ts --config tsup.config.ts && chmod +x dist/*.js",
+    "build:cli": "tsup src/cli/*.ts --format esm --platform node --shims --clean",
     "test": "vitest",
     "sync-json-to-figma": "tsx src/json_to_figma/sync_tokens_to_figma.ts",
     "ci:sync-json-to-figma": "tsx src/json_to_figma/sync_tokens_to_figma.ts --silent",
