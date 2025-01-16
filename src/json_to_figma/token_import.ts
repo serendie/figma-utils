@@ -20,7 +20,7 @@ import {
 } from "@figma/rest-api-spec";
 import { areSetsEqual } from "./utils.js";
 import { colorApproximatelyEqual, parseColor } from "./color.js";
-import { parseDimension } from "./dimension.js";
+import { parseDimension, parseDimensionObject } from "./dimension.js";
 
 const isSilentMode = process.argv.includes("--silent");
 
@@ -128,26 +128,22 @@ const traverseCollection = ({
 }) => {
   if (object.$value) {
     if (object.$type === "typography" && typeof object.$value === "object") {
-      tokens[`${key}/fontFamily`] = getReferenceToken(
-        originalTokens,
-        object.$value.fontFamily
-      );
-      tokens[`${key}/fontSize`] = getReferenceToken(
-        originalTokens,
-        object.$value.fontSize
-      );
-      if (typeof object.$value.fontWeight === "string") {
-        tokens[`${key}/fontWeight`] = getReferenceToken(
-          originalTokens,
-          object.$value.fontWeight
-        );
-      }
-      if (typeof object.$value.lineHeight === "string") {
-        tokens[`${key}/lineHeight`] = getReferenceToken(
-          originalTokens,
-          object.$value.lineHeight
-        );
-      }
+      tokens[`${key}/fontFamily`] = isAlias(object.$value.fontFamily)
+        ? getReferenceToken(originalTokens, object.$value.fontFamily)
+        : { $value: object.$value.fontFamily, $type: "fontFamily" };
+
+      tokens[`${key}/fontSize`] = isAlias(object.$value.fontSize)
+        ? getReferenceToken(originalTokens, object.$value.fontSize)
+        : { $value: object.$value.fontSize, $type: "dimension" };
+
+      tokens[`${key}/fontWeight`] = isAlias(object.$value.fontWeight)
+        ? getReferenceToken(originalTokens, object.$value.fontWeight.toString())
+        : { $value: object.$value.fontWeight, $type: "fontWeight" };
+
+      tokens[`${key}/lineHeight`] = isAlias(object.$value.lineHeight)
+        ? getReferenceToken(originalTokens, object.$value.lineHeight.toString())
+        : { $value: object.$value.lineHeight, $type: "dimension" };
+
       // W3C Spec的にはLetter Spacingは必要だが、現状Figma側では使っておらず、
       // 0px指定するとCSS側でGlobalなLetter Spacingを上書きしてしまうためコメントアウト
       // tokens[`${key}/letterSpacing`] = {
@@ -207,7 +203,7 @@ const variableResolvedTypeFromToken = (token: Token) => {
   }
 };
 
-const isAlias = (value: string) => {
+const isAlias = (value: string | number) => {
   return value.toString().trim().charAt(0) === "{";
 };
 
@@ -250,6 +246,15 @@ const variableValueFromToken = (
 
   if (typeof token.$value === "string" && token.$type === "dimension") {
     return parseDimension(token.$value);
+  }
+
+  if (
+    typeof token.$value === "object" &&
+    token.$type === "dimension" &&
+    "value" in token.$value &&
+    "unit" in token.$value
+  ) {
+    return parseDimensionObject(token.$value as any);
   }
 
   if (!isTypography(token.$value)) {
