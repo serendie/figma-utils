@@ -2,8 +2,8 @@
 
 ## sync-to-figma
 
-Syncs tokens from a JSON file to Figma.
+Syncs tokens from JSON files to Figma.
 
 ## sync-from-figma
 
-Syncs tokens from Figma to a JSON file.
+Syncs tokens from Figma to JSON files.

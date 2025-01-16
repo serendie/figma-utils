@@ -1,7 +1,7 @@
 {
   "name": "@serendie/figma-utils",
   "description": "utils for figma",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -32,11 +32,10 @@
     "typescript": "^5.5.3"
   },
   "bin": {
-    "sync-to-figma": "./dist/sync-to-figma.js",
-    "sync-from-figma": "./dist/sync-from-figma.js"
+    "sync-to-figma": "dist/sync-to-figma.js",
+    "sync-from-figma": "dist/sync-from-figma.js"
   },
   "files": [
-    "dist",
-    "bin"
+    "dist"
   ]
 }
