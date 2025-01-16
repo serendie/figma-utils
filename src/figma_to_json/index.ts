@@ -44,7 +44,6 @@ export const syncFromFigma = async (options: SyncOptions = {}) => {
             modeName: mode.name,
             values: Object.values(variableIds).map((variableId) => {
               const variable = variables[variableId];
-              console.log(variable.name, variable.valuesByMode[mode.modeId]);
               const type = resolveType(variable);
               return {
                 name: slashToDot(variable.name),
