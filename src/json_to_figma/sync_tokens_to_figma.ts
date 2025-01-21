@@ -67,11 +67,3 @@ export const syncToFigma = async (options: SyncOptions = {}) => {
 
   console.log(green("✅ Figma file has been updated with the new tokens"));
 };
-
-// package.jsonでtsxから実行された場合のエントリーポイント
-if (import.meta.url === `file://${process.argv[1]}`) {
-  syncToFigma().catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
-}

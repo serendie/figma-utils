@@ -2,6 +2,7 @@
 import { Command } from "commander";
 
 import { syncFromFigma } from "../figma_to_json/index.js";
+import chalk from "chalk";
 
 const program = new Command();
 
@@ -13,10 +14,12 @@ program
     try {
       await syncFromFigma({
         outputDir: options.output,
+      }).catch((error) => {
+        throw error;
       });
-      console.log("✨ デザイントークンの同期が完了しました");
+      console.log(chalk.green("✨ デザイントークンの同期が完了しました"));
     } catch (error) {
-      console.error("❌ エラーが発生しました:", error);
+      console.error(chalk.red("❌ エラーが発生しました:", error));
       process.exit(1);
     }
   });
