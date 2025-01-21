@@ -107,11 +107,3 @@ export const syncFromFigma = async (options: SyncOptions = {}) => {
     });
   });
 };
-
-// CLIから直接実行された場合のエントリーポイント
-if (import.meta.url === `file://${process.argv[1]}`) {
-  syncFromFigma().catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
-}

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import { syncToFigma } from "../json_to_figma/sync_tokens_to_figma.js";
+import chalk from "chalk";
 
 const program = new Command();
 
@@ -13,9 +14,12 @@ program
     try {
       await syncToFigma({
         dir: options.dir,
+      }).catch((error) => {
+        throw error;
       });
+      console.log(chalk.green("✨ デザイントークンの同期が完了しました"));
     } catch (error) {
-      console.error("❌ エラーが発生しました:", error);
+      console.error(chalk.red("❌ エラーが発生しました:", error));
       process.exit(1);
     }
   });
