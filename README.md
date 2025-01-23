@@ -19,9 +19,14 @@
 
 ### Commands
 
+**JSON to Figma Variables (Import)**
 ```
-npm run sync-json-to-figma # JSON to Figma Variables (Import)
-npm run sync-figma-to-json # Figma Variables to JSON (Export)
+npm run sync-json-to-figma
+```
+
+**Figma Variables to JSON (Export)**
+```
+npm run sync-figma-to-json
 ```
 
 ## Spec
