@@ -50,7 +50,7 @@ export const resolveTypographyValue = (tokens: W3CToken[]): W3CToken[] => {
           value.fontFamily = token.value as string;
           break;
         case "FONT_SIZE":
-          value.fontSize = token.value as { value: number; unit: string };
+          value.fontSize = token.value as string;
           break;
         case "FONT_STYLE":
           value.fontWeight = token.value as number;

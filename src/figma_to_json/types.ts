@@ -4,10 +4,7 @@ export type VariableValue =
   | number
   | boolean
   | { r: number; g: number; b: number; a: number }
-  | ValueWithUnit
   | TypographyValue;
-
-export type ValueWithUnit = { value: number; unit: string };
 
 export type VariableScope =
   | "ALL"
@@ -27,7 +24,7 @@ export type VariableCodeSyntax = { WEB: string };
 // タイポグラフィトークンの値の型
 export type TypographyValue = {
   fontFamily?: string;
-  fontSize?: ValueWithUnit;
+  fontSize?: string;
   fontWeight?: number;
   lineHeight?: number;
 };

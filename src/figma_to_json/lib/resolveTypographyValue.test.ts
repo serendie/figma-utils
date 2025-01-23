@@ -37,7 +37,7 @@ describe("resolveTypographyValue", () => {
       {
         name: "sd.system.typography.headline.large.fontSize",
         type: "dimension",
-        value: { value: 32, unit: "px" },
+        value: "32px",
         extensions: {
           "com.figma": {
             scopes: ["FONT_SIZE" as VariableScope],
@@ -82,10 +82,7 @@ describe("resolveTypographyValue", () => {
         type: "typography",
         value: {
           fontFamily: "Roboto",
-          fontSize: {
-            value: 32,
-            unit: "px",
-          },
+          fontSize: "32px",
           fontWeight: 400,
           lineHeight: 1.6,
         },
