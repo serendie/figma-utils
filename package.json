@@ -1,6 +1,6 @@
 {
   "name": "@serendie/figma-utils",
-  "description": "utils for figma",
+  "description": "Import/Export Figma Variables to JSON (W3C Design Tokens spec) with Figma REST API",
   "version": "0.0.3",
   "type": "module",
   "publishConfig": {
