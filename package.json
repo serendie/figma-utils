@@ -3,9 +3,6 @@
   "description": "utils for figma",
   "version": "0.0.3",
   "type": "module",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "build": "npm run build:cli",
     "build:cli": "tsup src/cli/*.ts --format esm --platform node --shims --clean",
