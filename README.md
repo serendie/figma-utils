@@ -1,5 +1,9 @@
 # SDS Figma Utilities
 
+[![GitHub](https://img.shields.io/github/license/serendie/figma-utils?style=flat)](https://github.com/serendie/figma-utils/blob/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/%40serendie%2Ffigma-utils)](https://www.npmjs.com/package/@serendie/figma-utils)
+[![X](https://img.shields.io/twitter/follow/SerendieDesign)](https://x.com/SerendieDesign/)
+
 [Serendie Design System](https://serendie.design/)で使われるFigma用ユーティリティーです。
 [`@serendie/design-token`](https://github.com/serendie/design-tokens)の中で定義される[W3C Design Tokens Spec](https://tr.designtokens.org/format/)準拠のJSONを、Figma VariablesにImport/Exportするスクリプトが含まれています。
 

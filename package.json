@@ -2,6 +2,7 @@
   "name": "@serendie/figma-utils",
   "description": "Import/Export Figma Variables to JSON (W3C Design Tokens spec) with Figma REST API",
   "version": "0.0.3",
+  "license": "MIT",
   "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
