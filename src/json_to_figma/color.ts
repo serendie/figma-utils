@@ -33,7 +33,9 @@ export const parseColor = (inputColor: string): RGB | RGBA => {
       r: parseInt(expandedHex.slice(0, 2), 16) / 255,
       g: parseInt(expandedHex.slice(2, 4), 16) / 255,
       b: parseInt(expandedHex.slice(4, 6), 16) / 255,
-      ...(alphaValue ? { a: parseInt(alphaValue, 16) / 255 } : {}),
+      ...(alphaValue
+        ? { a: Math.round((parseInt(alphaValue, 16) / 255) * 100) / 100 }
+        : {}),
     };
   }
 
