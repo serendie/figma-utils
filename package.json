@@ -10,7 +10,7 @@
     "test": "vitest",
     "sync-json-to-figma": "tsx src/cli/sync-to-figma.ts",
     "ci:sync-json-to-figma": "tsx src/cli/sync-to-figma.ts --silent",
-    "release": "release-it --config ../.release-it.json",
+    "release": "release-it --config .release-it.json",
     "sync-figma-to-json": "tsx src/cli/sync-from-figma.ts",
     "test:sync-figma-to-json": "vitest src/figma_to_json"
   },
