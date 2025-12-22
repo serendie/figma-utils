@@ -37,14 +37,14 @@ describe("parseColor", () => {
     expect(parseColor("#f09")).toEqual({ r: 1, g: 0, b: 153 / 255 });
     expect(parseColor("#F09")).toEqual({ r: 1, g: 0, b: 153 / 255 });
 
-    // 4-value syntax
+    // 4-value syntax (alpha is rounded to 2 decimal places)
     expect(parseColor("#0000")).toEqual({ r: 0, g: 0, b: 0, a: 0 });
     expect(parseColor("#000F")).toEqual({ r: 0, g: 0, b: 0, a: 1 });
     expect(parseColor("#f09a")).toEqual({
       r: 1,
       g: 0,
       b: 153 / 255,
-      a: 170 / 255,
+      a: 0.67, // 170/255 = 0.6666... rounded to 0.67
     });
 
     // 6-value syntax
@@ -54,15 +54,15 @@ describe("parseColor", () => {
     expect(parseColor("#ff0099")).toEqual({ r: 1, g: 0, b: 153 / 255 });
     expect(parseColor("#FF0099")).toEqual({ r: 1, g: 0, b: 153 / 255 });
 
-    // 8-value syntax
+    // 8-value syntax (alpha is rounded to 2 decimal places)
     expect(parseColor("#00000000")).toEqual({ r: 0, g: 0, b: 0, a: 0 });
-    expect(parseColor("#00000080")).toEqual({ r: 0, g: 0, b: 0, a: 128 / 255 });
+    expect(parseColor("#00000080")).toEqual({ r: 0, g: 0, b: 0, a: 0.5 }); // 128/255 = 0.502... rounded to 0.50
     expect(parseColor("#000000ff")).toEqual({ r: 0, g: 0, b: 0, a: 1 });
     expect(parseColor("#5EE0DCAB")).toEqual({
       r: 0.3686274509803922,
       g: 0.8784313725490196,
       b: 0.8627450980392157,
-      a: 0.6705882352941176,
+      a: 0.67, // 171/255 = 0.6705... rounded to 0.67
     });
   });
 
